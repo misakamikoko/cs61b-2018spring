@@ -51,14 +51,7 @@ public class LinkedListDeque<T> {
         endNode.next = sentinal;
     }
 
-    public static void main(String[] args) {
-        LinkedListDeque<String> a1 = new LinkedListDeque<>();
-        a1.addLast("hh");
-        a1.removeFirst();
-        boolean hh = a1.isEmpty();
-        System.out.println(hh);
-        //System.out.println(a1.isEmpty());
-    }
+
     public T removeFirst(){
         if(sentinal.next == null){
             return null;
