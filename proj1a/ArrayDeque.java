@@ -47,7 +47,8 @@ public class ArrayDeque<T> {
         size++;
     }
 
-    public void removeFirst() {
+    public T removeFirst() {
+        T returnItem = item[nextFirst];
         item[nextFirst] = null;
         if (nextFirst == 0) {
             nextFirst = item.length - 1;
@@ -55,9 +56,11 @@ public class ArrayDeque<T> {
             nextFirst++;
         }
         size--;
+        return returnItem;
     }
 
-    public void removeLast() {
+    public T removeLast() {
+        T returnItem = item[nextLast];
         item[nextLast] = null;
         if (nextLast == item.length - 1) {
             nextLast = 0;
@@ -65,6 +68,7 @@ public class ArrayDeque<T> {
             nextLast--;
         }
         size--;
+        return returnItem;
     }
 
     public void resize() {
