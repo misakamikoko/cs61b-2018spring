@@ -112,4 +112,15 @@ public class ArrayDeque<T> {
         }while(currentFirst != nextLast);
         System.out.println(str);
     }
+    public T get(int index) {
+        if (index >= size) {
+            return null;
+        }
+
+        int indexFromFront = nextFirst + 1 + index;
+        if (indexFromFront >= capacity) {
+            indexFromFront -= capacity;
+        }
+        return item[indexFromFront];
+    }
 }
