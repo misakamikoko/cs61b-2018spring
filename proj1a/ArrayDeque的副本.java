@@ -15,13 +15,7 @@ public class ArrayDeque<T> {
         nextFirst = capacity - 1;
         nextLast = 0;
     }
-    public boolean isEmpty(){
-        if(size == 0){
-            return true;
-        }
-        return false;
-    }
-    public int size(){
+    public int getSize(){
         return size;
     }
     private int onePlus(int index){
@@ -102,14 +96,5 @@ public class ArrayDeque<T> {
             item = newItem;
         }
     }
-    public void printDeque(){
-        String str = "";
-        int currentFirst = onePlus(nextFirst);
-        int currentNext = oneMinus(nextLast);
-        do {
-            str += item[currentFirst] + " ";
-            currentFirst = onePlus(currentFirst);
-        }while(currentFirst != nextLast);
-        System.out.println(str);
-    }
+
 }
