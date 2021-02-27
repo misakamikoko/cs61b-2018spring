@@ -55,6 +55,9 @@ public class ArrayDeque<T> {
         expand();
     }
     public T removeFirst(){
+        if(isEmpty()){
+            return null;
+        }
         int currentFirst = onePlus(nextFirst);
         T itemRemove = item[currentFirst];
         item[currentFirst] = null;
@@ -64,6 +67,9 @@ public class ArrayDeque<T> {
         return itemRemove;
     }
     public T removeLast(){
+        if(isEmpty()){
+            return null;
+        }
         int currentLast = oneMinus(nextLast);
         T itemRemove = item[currentLast];
         item[currentLast] = null;
@@ -78,7 +84,7 @@ public class ArrayDeque<T> {
         }
     }
     private void contract(){
-        if(capacity > 16 && (double) size/capacity < 0.25){
+        if(capacity >= 16 && (double) size/capacity < 0.25){
             resize(capacity / contractCo);
         }
     }
