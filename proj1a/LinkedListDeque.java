@@ -4,18 +4,18 @@ public class LinkedListDeque<T> {
     private IntList sentinal = new IntList(null,null,null);
     private class IntList{
         private T item;
-        private IntList next;
         private IntList pre;
+        private IntList next;
 
         public IntList() {
             this.item = null;
-            this.next = null;
             this.pre = null;
+            this.next = null;
         }
-        public IntList(T item, IntList next, IntList pre){
+        public IntList(T item, IntList pre, IntList next){
             this.item = item;
-            this.next = next;
             this.pre = pre;
+            this.next = next;
         }
     }
     public LinkedListDeque(){
@@ -25,30 +25,15 @@ public class LinkedListDeque<T> {
     }
     public void addFirst(T item){
         size++;
-
-        IntList frontNOde = new IntList(item, null,null);
-        IntList rest = sentinal.next;
-        sentinal.next = frontNOde;
-        frontNOde.pre = sentinal;
-        frontNOde.next = rest;
-        if(rest == null){
-            sentinal.pre = frontNOde;
-            frontNOde.next = sentinal;
-            return;
-        }
-        rest.pre = frontNOde;
+        IntList newNode = new IntList(item, sentinal, sentinal.next);
+        sentinal.next.pre = newNode;
+        sentinal.next = newNode;
     }
     public void addLast(T item){
         size++;
-        IntList endNode = new IntList(item, null, null);
-        if(size == 1){
-            addFirst(item);
-            return;
-        }
-        endNode.pre = sentinal.pre;
-        sentinal.pre.next = endNode;
-        sentinal.pre = endNode;
-        endNode.next = sentinal;
+        IntList newNode = new IntList(item, sentinal.pre, sentinal);
+        sentinal.pre.next = newNode;
+        sentinal.pre = newNode;
     }
 
 

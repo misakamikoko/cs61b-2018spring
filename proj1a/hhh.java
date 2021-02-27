@@ -1,8 +1,11 @@
 public class hhh {
     public static void main(String[] args) {
-        int[] a = new int[]{8};
-        int[] b = new int[1];
-        System.arraycopy(a, 0, b, 0, 1);
-        System.out.println(b[0]);
+        LinkedListDeque<String> a = new LinkedListDeque<>();
+        a.addLast("hh");
+        a.addLast("xx");
+        a.addFirst("hehe");
+        a.addLast("oo");
+        a.printDeque();
+        System.out.println(a.size());
     }
 }
