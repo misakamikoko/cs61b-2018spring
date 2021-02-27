@@ -94,9 +94,10 @@ public class ArrayDeque<T> {
         int currentLast = oneMinus(nextLast);
         T[] newItem = (T[]) new Object[newCapacity];
         if(currentFirst < currentLast){
-            System.arraycopy(item, 0, newItem, 0, capacity);
+            int copyLength = currentLast - currentFirst + 1;
+            System.arraycopy(item, currentFirst, newItem, 0, copyLength);
             nextFirst = newCapacity - 1;
-            nextLast = capacity;
+            nextLast = copyLength;
         }
         else{
             int firstLength = capacity - currentFirst;

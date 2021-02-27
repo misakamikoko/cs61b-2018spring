@@ -53,7 +53,7 @@ public class LinkedListDeque<T> {
 
 
     public T removeFirst(){
-        if(sentinal.next == null){
+        if(isEmpty()){
             return null;
         }
         T returnItem = sentinal.next.item;
@@ -62,7 +62,7 @@ public class LinkedListDeque<T> {
         return returnItem;
     }
     public T removeLast(){
-        if(sentinal.pre == null){
+        if(isEmpty()){
             return null;
         }
         T returnItem = sentinal.pre.item;
@@ -71,10 +71,7 @@ public class LinkedListDeque<T> {
         return returnItem;
     }
     public boolean isEmpty(){
-        if(sentinal.next != sentinal){
-            return false;
-        }
-        return true;
+        return size == 0;
     }
     public int size(){
         return size;
