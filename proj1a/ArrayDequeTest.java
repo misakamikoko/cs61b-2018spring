@@ -9,6 +9,9 @@ public class ArrayDequeTest {
         a1.addFirst("dada");
         a1.addLast("cad");
         a1.addFirst("huhnj");
+        a1.removeLast();
+        a1.removeLast();
+
         a1.printDeque();
         a1.addLast("hhds");
         a1.addLast("aadac");

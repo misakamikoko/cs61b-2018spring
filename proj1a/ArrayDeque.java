@@ -43,33 +43,33 @@ public class ArrayDeque<T> {
         return index;
     }
     public void addFirst(T addItem){
-        expand();
         item[nextFirst] = addItem;
         nextFirst = oneMinus(nextFirst);
         size++;
+        expand();
     }
     public void addLast(T addItem){
-        expand();
         item[nextLast] = addItem;
         nextLast = onePlus(nextLast);
         size++;
+        expand();
     }
     public T removeFirst(){
-        contract();
         int currentFirst = onePlus(nextFirst);
         T itemRemove = item[currentFirst];
         item[currentFirst] = null;
         nextFirst = onePlus(nextFirst);
         size--;
+        contract();
         return itemRemove;
     }
     public T removeLast(){
-        contract();
         int currentLast = oneMinus(nextLast);
         T itemRemove = item[currentLast];
         item[currentLast] = null;
         nextLast = oneMinus(nextLast);
         size--;
+        contract();
         return itemRemove;
     }
     private void expand(){
@@ -97,7 +97,7 @@ public class ArrayDeque<T> {
             System.arraycopy(item, currentFirst, newItem, newCurrentFirst, firstLength);
             int lastLength = nextLast;
             System.arraycopy(item, 0, newItem, 0, lastLength);
-            nextFirst = onePlus(newCurrentFirst);
+            nextFirst = oneMinus(newCurrentFirst);
             capacity = newCapacity;
             item = newItem;
         }
