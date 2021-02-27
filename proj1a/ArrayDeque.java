@@ -14,6 +14,7 @@ public class ArrayDeque<T> {
         item = (T[]) new Object[capacity];
         nextFirst = capacity - 1;
         nextLast = 0;
+        size = 0;
     }
     public boolean isEmpty(){
         if(size == 0){
@@ -61,7 +62,7 @@ public class ArrayDeque<T> {
         int currentFirst = onePlus(nextFirst);
         T itemRemove = item[currentFirst];
         item[currentFirst] = null;
-        nextFirst = onePlus(nextFirst);
+        nextFirst = currentFirst;
         size--;
         contract();
         return itemRemove;
@@ -73,7 +74,7 @@ public class ArrayDeque<T> {
         int currentLast = oneMinus(nextLast);
         T itemRemove = item[currentLast];
         item[currentLast] = null;
-        nextLast = oneMinus(nextLast);
+        nextLast = currentLast;
         size--;
         contract();
         return itemRemove;
@@ -94,8 +95,8 @@ public class ArrayDeque<T> {
         T[] newItem = (T[]) new Object[newCapacity];
         if(currentFirst < currentLast){
             System.arraycopy(item, 0, newItem, 0, capacity);
-            capacity = newCapacity;
-            item = newItem;
+            nextFirst = newCapacity - 1;
+            nextLast = capacity;
         }
         else{
             int firstLength = capacity - currentFirst;
@@ -104,9 +105,9 @@ public class ArrayDeque<T> {
             int lastLength = nextLast;
             System.arraycopy(item, 0, newItem, 0, lastLength);
             nextFirst = oneMinus(newCurrentFirst);
-            capacity = newCapacity;
-            item = newItem;
         }
+        capacity = newCapacity;
+        item = newItem;
     }
     public void printDeque(){
         String str = "";
