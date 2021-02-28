@@ -9,7 +9,7 @@ public class TestPalindrome {
     @Test
 
     public void testWordTodeque() {
-        deque d = palindrome.wordToDeque("persiflage");
+        Deque d = palindrome.wordToDeque("persiflage");
         String actual = "";
         for (int i = 0; i < "persiflage".length(); i++) {
             actual += d.removeFirst();
