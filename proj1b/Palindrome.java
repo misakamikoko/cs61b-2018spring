@@ -1,13 +1,13 @@
 public class Palindrome {
     public Deque<Character> wordToDeque(String word){
-        LinkedListDeque<Character> linkedListDeque = new LinkedListDeque<>();
+        Deque<Character> linkedListDeque = new LinkedListDeque<>();
         for(int i = 0; i < word.length(); i++){
             linkedListDeque.addLast(word.charAt(i));
         }
         return linkedListDeque;
     }
     public boolean isPalindrome(String word){
-        LinkedListDeque<Character> linkedListDeque = (LinkedListDeque<Character>) wordToDeque(word);
+        Deque<Character> linkedListDeque = (LinkedListDeque<Character>) wordToDeque(word);
         if(linkedListDeque.isEmpty() || linkedListDeque.size() == 1){
             return true;
         }
@@ -19,7 +19,7 @@ public class Palindrome {
         return true;
     }
     public boolean isPalindrome(String word, CharacterComparator cc){
-        LinkedListDeque<Character >linkedListDeque = (LinkedListDeque<Character>) wordToDeque(word);
+        Deque<Character >linkedListDeque = (LinkedListDeque<Character>) wordToDeque(word);
         if(linkedListDeque.isEmpty() || linkedListDeque.size() == 1){
             return false;
         }
