@@ -1,9 +1,9 @@
-public class LinkedListDeque<T> {
+public class LinkedListDeque<Item> implements Deque<Item> {
     private int size;
 
     private IntList sentinal = new IntList(null,null,null);
     private class IntList{
-        private T item;
+        private Item item;
         private IntList pre;
         private IntList next;
 
@@ -12,7 +12,7 @@ public class LinkedListDeque<T> {
             this.pre = null;
             this.next = null;
         }
-        public IntList(T item, IntList pre, IntList next){
+        public IntList(Item item, IntList pre, IntList next){
             this.item = item;
             this.pre = pre;
             this.next = next;
@@ -23,47 +23,56 @@ public class LinkedListDeque<T> {
         sentinal.next = sentinal;
         sentinal.pre = sentinal;
     }
-    public void addFirst(T item){
+    @Override
+    public void addFirst(Item item){
         size++;
         IntList newNode = new IntList(item, sentinal, sentinal.next);
         sentinal.next.pre = newNode;
         sentinal.next = newNode;
     }
-    public void addLast(T item){
+    @Override
+    public void addLast(Item item){
         size++;
         IntList newNode = new IntList(item, sentinal.pre, sentinal);
         sentinal.pre.next = newNode;
         sentinal.pre = newNode;
     }
 
-
-    public T removeFirst(){
+    @Override
+    public Item removeFirst(){
         if(isEmpty()){
             return null;
         }
         size--;
-        T returnItem = sentinal.next.item;
+        Item returnItem = sentinal.next.item;
         sentinal.next = sentinal.next.next;
         sentinal.next.pre = sentinal;
         return returnItem;
     }
-    public T removeLast(){
+
+    @Override
+    public Item removeLast(){
         if(isEmpty()){
             return null;
         }
         size--;
-        T returnItem = sentinal.pre.item;
+        Item returnItem = sentinal.pre.item;
         sentinal.pre = sentinal.pre.pre;
         sentinal.pre.next = sentinal;
         return returnItem;
     }
+    @Override
     public boolean isEmpty(){
         return size == 0;
     }
+
+    @Override
     public int size(){
         return size;
     }
-    public T get(int index){
+
+    @Override
+    public Item get(int index){
         IntList p = sentinal;
         if(sentinal.next == null){
             return null;
@@ -74,7 +83,8 @@ public class LinkedListDeque<T> {
         }
         return p.item;
     }
-    public T getRecursive(int index){
+
+    public Item getRecursive(int index){
         IntList p = sentinal.next;
         return getRecursiveHelper(p, index).item;
     }
@@ -84,6 +94,8 @@ public class LinkedListDeque<T> {
         }
         return getRecursiveHelper(node.next, index - 1);
     }
+
+    @Override
     public void printDeque(){
         String s = "";
         IntList p = sentinal.next;

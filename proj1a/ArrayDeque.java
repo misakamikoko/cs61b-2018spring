@@ -1,4 +1,4 @@
-public class ArrayDeque<T> {
+public class ArrayDeque<item> implements Deque<item> {
     private static int expandCo = 2;
     private static int contractCo = 2;
     private static double minContractSize = 16;
@@ -7,24 +7,29 @@ public class ArrayDeque<T> {
     private int size;
     private int nextFirst;
     private int nextLast;
-    private T[] item;
+    private item[] item;
 
     public ArrayDeque(){
         capacity = initialCapacity;
-        item = (T[]) new Object[capacity];
+        item = (item[]) new Object[capacity];
         nextFirst = capacity - 1;
         nextLast = 0;
         size = 0;
     }
+
+    @Override
     public boolean isEmpty(){
         if(size == 0){
             return true;
         }
         return false;
     }
+
+    @Override
     public int size(){
         return size;
     }
+
     private int onePlus(int index){
         if(index == capacity - 1){
             index = 0;
@@ -43,36 +48,44 @@ public class ArrayDeque<T> {
         }
         return index;
     }
-    public void addFirst(T addItem){
+
+    @Override
+    public void addFirst(item addItem){
         item[nextFirst] = addItem;
         nextFirst = oneMinus(nextFirst);
         size++;
         expand();
     }
-    public void addLast(T addItem){
+
+    @Override
+    public void addLast(item addItem){
         item[nextLast] = addItem;
         nextLast = onePlus(nextLast);
         size++;
         expand();
     }
-    public T removeFirst(){
+
+    @Override
+    public item removeFirst(){
         if(isEmpty()){
             return null;
         }
         int currentFirst = onePlus(nextFirst);
-        T itemRemove = item[currentFirst];
+        item itemRemove = item[currentFirst];
         item[currentFirst] = null;
         nextFirst = currentFirst;
         size--;
         contract();
         return itemRemove;
     }
-    public T removeLast(){
+
+    @Override
+    public item removeLast(){
         if(isEmpty()){
             return null;
         }
         int currentLast = oneMinus(nextLast);
-        T itemRemove = item[currentLast];
+        item itemRemove = item[currentLast];
         item[currentLast] = null;
         nextLast = currentLast;
         size--;
@@ -92,7 +105,7 @@ public class ArrayDeque<T> {
     private void resize(int newCapacity){
         int currentFirst = onePlus(nextFirst);
         int currentLast = oneMinus(nextLast);
-        T[] newItem = (T[]) new Object[newCapacity];
+        item[] newItem = (item[]) new Object[newCapacity];
         if(currentFirst < currentLast){
             int copyLength = currentLast - currentFirst + 1;
             System.arraycopy(item, currentFirst, newItem, 0, copyLength);
@@ -110,6 +123,8 @@ public class ArrayDeque<T> {
         capacity = newCapacity;
         item = newItem;
     }
+
+    @Override
     public void printDeque(){
         String str = "";
         int currentFirst = onePlus(nextFirst);
@@ -120,7 +135,9 @@ public class ArrayDeque<T> {
         }while(currentFirst != nextLast);
         System.out.println(str);
     }
-    public T get(int index) {
+
+    @Override
+    public item get(int index) {
         if (index >= size) {
             return null;
         }
